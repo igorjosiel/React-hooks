@@ -1,20 +1,12 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../contexts/AppContext';
+import { GlobalContext, actions } from '../../contexts/AppContext';
 
-// eslint-disable-next-line
-export const P = ({ children }) => {
-  const {
-    contextState: { body },
-    setState,
-  } = useContext(GlobalContext);
+export const P = () => {
+  const { state, dispatch } = useContext(GlobalContext);
 
   return (
-    <p
-      onClick={() =>
-        setState((state) => ({ ...state, counter: state.counter + 1 }))
-      }
-    >
-      {body}
+    <p onClick={() => dispatch({ type: actions.CHANGE_COUNTER })}>
+      {state.body}
     </p>
   );
 };
